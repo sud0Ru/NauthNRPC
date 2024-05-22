@@ -30,7 +30,7 @@ For enumerateing users or computers, you can provide a text file containing user
 ```python3 nauth.py -t target -u users_file.txt -f computers_file.txt```
 
 ## Authors
-Haidar kabibo, Kasperskey Secutiry Services. Twitter: https://twitter.com/haider_kabibo 
+Haidar kabibo, Kasperskey Security Services. Twitter: https://twitter.com/haider_kabibo 
 
 ## License
 This software is provided under MIT Software License
