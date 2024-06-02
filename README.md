@@ -4,10 +4,10 @@
 
 NauthNRPC is a Python tool that introduces a new method for gathering domain information, including the enumeration of domain users. The tool leverages auth-level = 1 (No authentication) against the MS-NRPC (Netlogon) interface on domain controllers. All that's required is the domain controller's IP address, and the entire process can be completed without providing any credentials.
 
-Preventing such enumeration is challenging, and detection poses difficulties for blue teamers. For further details, please refer to my research
+Preventing such enumeration is challenging, and detection poses difficulties for blue teamers. For further details, please refer to my [research](https://github.com/sud0Ru/Publications/blob/master/Make_Null_Session_Great_Again.pdf)
 
 
-## Key Features:
+## Key Features
 
 
 - **Domain Information Enumeration:** The tool extracts information such as the DC name, domain name, domain GUID, site name, forest name, and various flags that indicate properties of the DC.
@@ -16,7 +16,7 @@ Preventing such enumeration is challenging, and detection poses difficulties for
 
 - **Users and Computers Enumeration:** The tool can enumerate domain users and computers and check for their existence
 
-## Compatibility:
+## Compatibility
 This tool has been tested with Windows servers 2012, 2016, 2019 and 2022.
 
 ## Usage
