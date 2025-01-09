@@ -20,6 +20,7 @@ def args_parser():
     parser.add_argument('-u', '--usersfile', action='store', help='File that contains user accounts', required=False)
     parser.add_argument('-c', '--computersfile', action='store', help='File that contains computer accounts',
                         required=False)
+    parser.add_argument('-v', '--verbose', action='store_true', help='Print all accounts (default: only existing accounts)')
 
     return parser
 
@@ -56,13 +57,14 @@ def hDsrGetDcNameEx2(dce, computerName, accountName, allowableAccountControlBits
 
 class NAuthNRPC:
 
-    def __init__(self, ip, users_file=None, computers_file=None):
+    def __init__(self, ip, users_file=None, computers_file=None, verbose=False):
         self.output = None
         self.domain_info = None
         self.dce = None
         self.bind = None
         # Flag to indicate if the domain info is retrieved successfully
         self.domain_info_flag = False
+        self.verbose = verbose
         self.address = ip
         if users_file is not None:
             try:
@@ -226,7 +228,7 @@ class NAuthNRPC:
 
             if response is not None and response["ErrorCode"] == 0:
                 print(f"[+] user {username} exists.")
-            else:
+            elif self.verbose:
                 print(f"[-] user {username} does not exist")
 
     def computer_accounts_enumerator(self):
@@ -251,7 +253,7 @@ class NAuthNRPC:
 
                 if response is not None and response["ErrorCode"] == 0:
                     print(f"[+] computer account {computer_account} exists.")
-                else:
+                elif self.verbose:
                     print(f"[-] user {computer_account} does not exist")
 
     def run(self):
@@ -316,5 +318,6 @@ if __name__ == '__main__':
     target = options.target
     usersfile = options.usersfile
     computersfile = options.computersfile
-    nauth = NAuthNRPC(target, usersfile, computersfile)
+    verbose = options.verbose
+    nauth = NAuthNRPC(target, usersfile, computersfile, verbose)
     nauth.run()
